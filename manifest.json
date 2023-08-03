@@ -1,0 +1,32 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "Death Chests",
+		"description": "Creates a chest with inventory on death",
+		"uuid": "217f9c16-9f44-4053-af0e-b3ca3151eb4e",
+		"min_engine_version": [1, 19, 40],
+		"version": [1, 0, 0]
+	},
+	"modules": [
+		{
+			"description": "Behavior Pack Module",
+			"type": "data",
+			"uuid": "5b224e5e-d376-4179-9a04-555d774cdb8c",
+			"version": [1, 0, 0]
+		},
+		{
+			"description": "Gametest Module",
+			"type": "script",
+			"language": "javascript",
+			"entry": "scripts/index.js",
+			"uuid": "1d82861d-d514-44e9-9182-0f18c6aedc42",
+			"version": [1, 0, 0]
+		}
+	],
+	"dependencies": [
+		{
+			"module_name": "@minecraft/server",
+			"version": "1.4.0-beta"
+		}
+  ]
+}
