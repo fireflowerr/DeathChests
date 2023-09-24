@@ -1,4 +1,4 @@
-import { world, MinecraftBlockTypes, EntityEquipmentInventoryComponent, EquipmentSlot, BlockInventoryComponent, EntityInventoryComponent } from "@minecraft/server";
+import {world, EntityEquippableComponent, EquipmentSlot, BlockInventoryComponent, EntityInventoryComponent } from "@minecraft/server";
 
 const MAX_PLAYER_INVENTORY_SZ = 36;
 
@@ -28,13 +28,13 @@ const isPlayer = (entity) => {
  */
 const spawnChest = (dimension, coords, sz) => {
     const mainChestBlock = dimension.getBlock(coords);
-    mainChestBlock.setType(MinecraftBlockTypes.chest);
+    mainChestBlock.setType('minecraft:chest');
     if (sz === 'single') {
         return mainChestBlock;
     }
 
     const secondaryChestBlock = dimension.getBlock({...coords, x: coords.x + 1});
-    secondaryChestBlock.setType(MinecraftBlockTypes.chest);
+    secondaryChestBlock.setType('minecraft:chest');
     return mainChestBlock;
 }
 
@@ -55,9 +55,9 @@ const transferInventory = (player, chest) => {
     const chestContainer = chestInventoryComponent.container;
 
     /**
-     * @type {EntityEquipmentInventoryComponent}
+     * @type {EntityEquippableComponent}
      */
-    const equipmentComponent = player.getComponent(EntityEquipmentInventoryComponent.componentId);
+    const equipmentComponent = player.getComponent(EntityEquippableComponent.componentId);
     
     let chestSlotCursor = 0;
     Object.values(EquipmentSlot).forEach((slot) => {
@@ -71,7 +71,7 @@ const transferInventory = (player, chest) => {
     });
 
     /**
-     * @type {PlayerInventoryComponent}
+     * @type {EntityInventoryComponent}
      */
     const playerInventoryComponent = player.getComponent(EntityInventoryComponent.componentId);
     /**
